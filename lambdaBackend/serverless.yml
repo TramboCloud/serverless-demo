@@ -1,0 +1,37 @@
+myLambda:
+  component: "@serverless/aws-lambda"
+  inputs:
+    handler: index.handler
+    code: ./
+
+# provider:
+#   name: aws
+#   stackName: dev-test-functions
+#   region: us-east-1
+#   logRetentionInDays: 90
+#   runtime: nodejs12.x
+#   endpointType: regional
+#   role: nuestro-diario-lambda-role
+
+
+myAppSyncApi:
+  component: "@serverless/aws-app-sync"
+  inputs:
+    # creating the API and an API key
+    name: Posts
+    authenticationType: API_KEY
+    apiKeys:
+      - myApiKey
+
+    # defining your lambda data source
+    dataSources:
+      - type: AWS_LAMBDA
+        name: getPost
+        config:
+          lambdaFunctionArn: ${myLambda.arn}
+
+    # mapping schema fields to the data source
+    mappingTemplates:
+      - dataSource: getPost
+        type: Query
+        field: getPost

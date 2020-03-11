@@ -1,0 +1,24 @@
+
+service: fnc_rds_readapp
+
+provider:
+  name: aws
+  stackName: dev-test-functions
+  region: us-east-1
+  logRetentionInDays: 90
+  runtime: nodejs12.x
+  endpointType: regional
+  # role: nuestro-diario-lambda-role
+#
+functions:
+  slack_deploy:
+    handler: fnc_rds_readapp/index.handler
+    name: fnc_rds_readapp
+    timeout: 300
+    memorySize: 128
+    environment:
+      db_name: db_name
+      db_password : db_password
+      db_username: db_username
+      rds_host: rds_host
+      rds_port: 3306

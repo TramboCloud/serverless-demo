@@ -1,0 +1,23 @@
+
+MediaApp:
+  component: "@serverless/aws-app-sync"
+  inputs:
+    name: MediaApp
+    authenticationType: API_KEY
+    apiKeys:
+      - myApiKey
+
+    dataSources:
+      - type: AWS_LAMBDA
+        name: red_app_source
+        config:
+          lambdaFunctionArn: arn:aws:lambda:us-east-1:485837490462:function:fnc_rds_readapp
+      - type: AWS_LAMBDA
+        name: redapp_lambda
+        config:
+          lambdaFunctionArn: arn:aws:lambda:us-east-1:485837490462:function:fnc_rds_readapp
+
+    mappingTemplates:
+      - dataSource: red_app_source
+        type: Query
+        field: getCorresponsales

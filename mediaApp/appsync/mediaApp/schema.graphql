@@ -1,0 +1,38 @@
+type Corresponsal {
+	idcorresponsal: ID
+	idcorresponsal_tipo: ID
+	idcobertura_tipo: ID
+	idcalificacion_tipo: ID
+	idgeo_pais: ID
+	idarea: ID
+	idempresa_telefonica: ID
+	cognito_id: ID
+	usuario: String
+	clave: String
+	nombre: String
+	telefono: String
+	foto: String
+	direccion: String
+	estado: String
+	user_level_id: String
+	fecha_insercion: String
+}
+
+type Query {
+	me: Corresponsal
+	getCorresponsales(options: fullquery): [Corresponsal]
+}
+
+input fullquery {
+	where: [where]
+	limit: Int
+	order: String
+	index: String
+	group_by: String
+}
+
+input where {
+	field: String
+	value: String
+	type: String
+}

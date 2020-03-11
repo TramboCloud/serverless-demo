@@ -1,0 +1,17 @@
+{
+  "name": "fnc_nd_digital_post_suscription",
+  "version": "1.0.0",
+  "description": "Lambda function to save a new suscription",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "cdamorales",
+  "license": "ISC",
+  "dependencies": {
+    "fcm-node": "^1.3.0",
+    "mysql": "^2.16.0",
+    "@serverless/aws-lambda": "3.0.0"
+  }
+}
